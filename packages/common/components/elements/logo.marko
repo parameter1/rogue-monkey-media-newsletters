@@ -1,0 +1,26 @@
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { website, config } = out.global;
+$ const { newsletter } = input;
+
+$ const newsletterConfig = config.get(newsletter.alias);
+
+$ const logoSrc = newsletterConfig.logoSrc;
+
+$ const alt = defaultValue(input.alt, newsletter.name);
+
+$ const logoStyles = {
+  "border": "0",
+  "font-size": "0",
+  "line-height": "0",
+}
+
+$ const linkStyles = {
+  "display": "block",
+  "font-size": "0",
+  "line-height": "0",
+}
+
+<marko-newsletter-imgix src=logoSrc options={ w: 130 } alt=alt attrs={ border: "0", width: "130", style: logoStyles }>
+  <@link href=website.get("origin") attrs={ style: linkStyles } target="_blank" />
+</marko-newsletter-imgix>
