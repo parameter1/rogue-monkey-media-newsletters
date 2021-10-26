@@ -1,0 +1,52 @@
+$ const { newsletter, date } = input;
+
+<table role="presentation" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tbody>
+    <tr>
+      <td align="center" valign="top">
+        <table role="presentation" width="600" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap000">
+          <tbody>
+            <tr>
+              <td align="center" valign="top">
+                <table role="presentation" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tbody>
+
+                    <!-- View online block -->
+                    <if(input.viewOnline)>
+                      <${input.viewOnline} />
+                    </if>
+                    <else>
+                      <common-view-online-block />
+                    </else>
+
+                    <!-- Header block -->
+                    <if(input.header)>
+                      <${input.header} />
+                    </if>
+                    <else>
+                      <common-header-block date=date newsletter=newsletter />
+                    </else>
+
+
+                    <if(input.body)>
+                      <${input.body} />
+                    </if>
+
+                    <!-- Footer block -->
+                    <if(input.footer)>
+                      <${input.footer} />
+                    </if>
+                    <else>
+                      <common-footer-block date=date newsletter=newsletter />
+                    </else>
+
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>

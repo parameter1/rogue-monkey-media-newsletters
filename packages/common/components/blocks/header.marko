@@ -1,0 +1,32 @@
+$ const { config } = out.global
+
+$ const { newsletter, date } = input;
+
+$ const newsletterConfig = config.get(newsletter.alias);
+$ const name = (newsletterConfig.name || newsletter.name);
+
+<tr>
+  <td align="center" valign="top" bgcolor="#2f3031">
+    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <common-table-spacer-element height="12" />
+      <tr>
+        <td align="center" valign="top">
+          <table role="presentation" width="610" border="0" cellspacing="0" cellpadding="0" class="wrap003">
+            <tr>
+              <td align="left" valign="top" width="15"></td>
+              <td align="left" valign="top" width="130" style="padding-top: 5px">
+                <common-logo-element newsletter=newsletter />
+              </td>
+              <td align="left" valign="top" width="24"></td>
+              <td align="left" valign="middle" style="font-size: 26px;line-height: 40px;color: #ffffff;font-weight: 700;" class="font1">
+                ${name}
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <common-table-spacer-element height="9" />
+    </table>
+  </td>
+</tr>
+<common-table-spacer-element />
