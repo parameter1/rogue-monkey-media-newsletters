@@ -1,3 +1,5 @@
+import { get } from "@parameter1/base-cms-object-path";
+
 $ const { config } = out.global
 
 $ const { newsletter, date } = input;
@@ -5,8 +7,10 @@ $ const { newsletter, date } = input;
 $ const newsletterConfig = config.get(newsletter.alias);
 $ const name = (newsletterConfig.name || newsletter.name);
 
+$ const background = get(newsletterConfig, "bgColor");
+
 <tr>
-  <td align="center" valign="top" bgcolor="#2f3031">
+  <td align="center" valign="top" bgcolor=background>
     <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
       <common-table-spacer-element height="12" />
       <tr>
@@ -18,7 +22,7 @@ $ const name = (newsletterConfig.name || newsletter.name);
                 <common-logo-element newsletter=newsletter />
               </td>
               <td align="left" valign="top" width="24"></td>
-              <td align="left" valign="middle" style="font-size: 26px;line-height: 40px;color: #ffffff;font-weight: 700;" class="font1">
+              <td align="left" valign="middle" style="font-size: 26px; color: #000000; line-height: 40px;font-weight: 700;" class="font1">
                 ${name}
               </td>
             </tr>
