@@ -7,7 +7,7 @@ $ const { content, urlParams } = input;
 $ const withImage = defaultValue(input.withImage, false);
 $ const imagePosition = defaultValue(input.imagePosition, 'right');
 $ const withSection = defaultValue(input.withSection, true);
-$ const continueReading = defaultValue(input.continueReading, false);
+$ const readMore = defaultValue(input.readMore, true);
 
 $ const queryString = (urlParams && content.type !== 'promotion') ? `?${new URLSearchParams(urlParams)}` : "";
 $ const contentUrl = `${content.siteContext.url}${queryString}`
@@ -101,7 +101,7 @@ $ const sponsoredTagStyle = {
                               ${content.teaser}
                             </td>
                           </tr>
-                          <if(continueReading)>
+                          <if(readMore)>
                             <common-table-spacer-element height="9" />
                             <common-cta-element link-url=contentUrl />
                           </if>
@@ -136,7 +136,7 @@ $ const sponsoredTagStyle = {
                   ${content.teaser}
                 </td>
               </tr>
-              <if(continueReading)>
+              <if(readMore)>
                 <common-table-spacer-element height="9" />
                 <common-cta-element link-url=contentUrl />
               </if>
@@ -158,7 +158,7 @@ $ const sponsoredTagStyle = {
             ${content.teaser}
           </td>
         </tr>
-        <if(continueReading)>
+        <if(readMore)>
           <common-table-spacer-element height="9" />
           <common-cta-element link-url=contentUrl />
         </if>
