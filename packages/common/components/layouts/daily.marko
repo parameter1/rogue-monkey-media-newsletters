@@ -23,10 +23,8 @@ $ const nativeX = config.getAsObject("nativeX");
         <!-- Content list block -->
         <common-content-list-block
           date=date
-          with-section=false
-          section-name="Featured"
-          with-image=true
-          image-position="right"
+          with-section=true
+          section-name="Main"
           newsletter=newsletter
           limit=1
           skip=0
@@ -44,9 +42,21 @@ $ const nativeX = config.getAsObject("nativeX");
           date=date
           with-section=false
           section-name="Main"
+          with-image=true
+          image-position="right"
           newsletter=newsletter
-          limit=2
-          skip=0
+          limit=1
+          skip=1
+        />
+
+        <!-- Content list block -->
+        <common-content-list-block
+          date=date
+          with-section=true
+          section-name="Main"
+          newsletter=newsletter
+          limit=1
+          skip=2
         />
 
         <!--Advertisement / Promotion block -->
@@ -57,13 +67,16 @@ $ const nativeX = config.getAsObject("nativeX");
           placement-id=get(nativeX, `placements.${newsletter.alias}.native-slot-1`)
         />
 
-        <!-- Content list block -->
+        <!-- Announcement block -->
         <common-content-list-block
           date=date
-          section-name="Main"
+          with-section=false
+          section-name="Announcement"
+          with-image=true
+          image-position="top"
           newsletter=newsletter
-          limit=2
-          skip=2
+          limit=1
+          skip=0
         />
 
         <!-- Ad Slot 2 -->
@@ -77,8 +90,10 @@ $ const nativeX = config.getAsObject("nativeX");
         <common-content-list-block
           date=date
           section-name="Main"
+          with-image=true
+          image-position="right"
           newsletter=newsletter
-          limit=2
+          limit=1
           skip=4
         />
 
@@ -90,13 +105,19 @@ $ const nativeX = config.getAsObject("nativeX");
           placement-id=get(nativeX, `placements.${newsletter.alias}.native-slot-2`)
         />
 
+        <!-- Sponsors block -->
+        <common-content-sponsors-block
+          date=date
+          section-name="Main"
+          newsletter=newsletter
+        />
+
         <!-- Content list block -->
         <common-content-list-block
           date=date
           section-name="Main"
           newsletter=newsletter
-          limit=1
-          skip=6
+          skip=5
         />
 
         <!-- Ad Slot 3 -->
