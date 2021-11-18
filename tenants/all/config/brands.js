@@ -1,12 +1,12 @@
 module.exports = {
   nrwa: {
     brandName: 'National Rural Water Association',
-    headerSrc: '/files/base/roguemonkeymedia/all/image/static/nrwa/nrwa-header.png',
+    headerSrc: '/files/base/roguemonkeymedia/all/image/static/nrwa/RuralWaterWire-1200x454.png',
     logoSrc: '/files/base/roguemonkeymedia/all/image/static/nrwa/Rural-Water-Wire_rev-logo.svg',
     subscribeLink: '',
     advertiseLink: '',
     editorialLink: '',
-    bgColor: '#000000',
+    bgColor: '#3856a6',
     socialMedia: {
       imagePath: '/files/base/roguemonkeymedia/all/image/static/nrwa/newsletter/',
       links: [
