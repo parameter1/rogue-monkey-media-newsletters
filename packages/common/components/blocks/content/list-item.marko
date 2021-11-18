@@ -41,44 +41,82 @@ $ const sponsoredTagStyle = {
 
 <tr>
   <td align="center" valign="top">
-    <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
 
-      $ const labels = getAsArray(content, "labels");
-      <if(labels.includes("Sponsored"))>
-        $ const tag = (content.company) ? `Sponsored Content by ${get(content, "company.name")}` : "Sponsored Content";
+    $ const labels = getAsArray(content, "labels");
+    <if(labels.includes("Sponsored"))>
+      $ const tag = (content.company) ? `Sponsored Content by ${get(content, "company.name")}` : "Sponsored Content";
+      <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
         <tr>
           <td align="left" valign="top" style=sponsoredTagStyle>${tag}</td>
         </tr>
-      </if>
-      <else-if(withSection)>
+      </table>
+    </if>
+    <else-if(withSection)>
+      <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
         <tr>
           <td align="left" valign="top" style=tagStyle>${get(content, "primarySection.name")}</td>
         </tr>
-      </else-if>
+      </table>
+    </else-if>
 
+    <common-table-spacer-element height="6" />
+
+    <if(withImage && imagePosition === 'top' && content.primaryImage)>
       <common-table-spacer-element height="6" />
 
-      <if(withImage && imagePosition === 'top' && content.primaryImage)>
-        <common-table-spacer-element height="6" />
+      <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#f3f8f8" class="wrap003">
+        <common-table-spacer-element height="25" />
         <tr>
           <td align="center" valign="top">
-            <marko-core-obj-value|{ value: image }| obj=content field="primaryImage" as="object">
-              <marko-newsletter-imgix
-                src=image.src
-                alt=image.alt
-                options={ w: 1220, h: 610, fit: "crop", auto: "format,compress" }
-                class="img_resize1"
-                attrs={ border: 0, width: 610, align: "center", vspace: 5, style: imgStyles }
-              >
-                <@link href=contentUrl target="_blank" attrs={ style: imgLinkStyles } />
-              </marko-newsletter-imgix>
-            </marko-core-obj-value>
+            <table width="580" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td align="left" valign="top" style="font-size: 17px;line-height: 23px;color:#589292;font-weight: 400;">
+                  ANNOUNCEMENT
+                </td>
+              </tr>
+              <common-table-spacer-element height="15" />
+              <tr>
+                <td align="center">
+                  <marko-core-obj-value|{ value: image }| obj=content field="primaryImage" as="object">
+                    <marko-newsletter-imgix
+                      src=image.src
+                      alt=image.alt
+                      options={ w: 1220, h: 580, fit: "crop", auto: "format,compress" }
+                      class="img_resize1"
+                      attrs={ border: 0, width: 580, align: "center", vspace: 5 }
+                    >
+                      <@link href=contentUrl target="_blank" attrs={ style: imgLinkStyles } />
+                    </marko-newsletter-imgix>
+                  </marko-core-obj-value>
+                </td>
+              </tr>
+              <common-table-spacer-element height="10" />
+              <tr>
+                <td>
+                  <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td align="left" valign="top" style="font-size: 17px;line-height: 23px;color: #202022;font-weight: 400;">
+                        ${content.teaser}
+                      </td>
+                    </tr>
+                    <!-- <if(readMore)>
+                      <common-table-spacer-element height="9" />
+                      <common-cta-element link-url=contentUrl />
+                    </if> -->
+                  </table>
+                </td>
+              </tr>
+              <common-table-spacer-element height="15" />
+            </table>
           </td>
         </tr>
-        <common-table-spacer-element height="10" />
-      </if>
+      </table>
 
-      <if(withImage && imagePosition === 'right' && content.primaryImage)>
+      <common-table-spacer-element height="10" />
+    </if>
+
+    <if(withImage && imagePosition === 'right' && content.primaryImage)>
+      <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
         <tr>
           <td align="center" valign="top" dir="ltr">
             <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -143,8 +181,10 @@ $ const sponsoredTagStyle = {
             </table>
           </td>
         </tr>
-      </if>
-      <else>
+      </table>
+    </if>
+    <else-if(withImage==false)>
+      <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
         <tr>
           <td align="left" valign="top">
             <a style="font-size: 24px;line-height: 28px;color: #202022;font-weight: 700;text-decoration: none;" href=contentUrl>
@@ -162,8 +202,8 @@ $ const sponsoredTagStyle = {
           <common-table-spacer-element height="9" />
           <common-cta-element link-url=contentUrl />
         </if>
-      </else>
-      <common-table-spacer-element height="32" />
-    </table>
+      </table>
+    </else-if>
+    <common-table-spacer-element height="32" />
   </td>
 </tr>
