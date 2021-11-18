@@ -1,0 +1,55 @@
+import { get } from "@parameter1/base-cms-object-path";
+
+$ const { config } = out.global;
+
+$ const { newsletter, date } = input;
+
+$ const newsletterConfig = config.get(newsletter.alias);
+
+$ const sectionNameStyle = {
+  "font-size": "25px",
+  "line-height": "23px",
+  "font-weight": "900",
+  "color": "#3856a6",
+};
+
+<table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
+  <tr>
+    <td align="center" valign="middle" class="font1" style=sectionNameStyle>
+      SPONSORS
+    </td>
+  </tr>
+  <common-table-spacer-element class="height2" height=20 />
+  <tr>
+    <td>
+      <table style="padding-bottom: 5px;" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left" style="padding-right: 10px">
+            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
+              <img class="content-image" title="Economic Outlook Mailing - US Leading Indicator" src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/red.png" alt="Economic Outlook Mailing - US Leading Indicator" width="290" height="125" />
+            </a>
+          </td>
+          <td align="right" style="padding-left: 10px">
+            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
+              <img class="content-image" title="Economic Outlook Mailing - Public New Construction" src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/teal.png" alt="Economic Outlook Mailing - Public New Construction" width="290" height="125" />
+            </a>
+          </td>
+        </tr>
+      </table>
+      <table style="padding-top: 5px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+          <td align="left" style="padding-right: 10px">
+            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
+              <img class="content-image" title="Economic Outlook Mailing - European Composite Leading Indicator" src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/yellow.png" alt="Economic Outlook Mailing - European Composite Leading Indicator" width="290" />
+            </a>
+          </td>
+          <td align="right" style="padding-left: 10px">
+            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
+              <img class="content-image" title="Economic Outlook Mailing - Mining, Oil &amp; Gas Field Machinery etc." src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/blue.png" alt="Economic Outlook Mailing - Mining, Oil &amp; Gas Field Machinery etc." width="290" />
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
