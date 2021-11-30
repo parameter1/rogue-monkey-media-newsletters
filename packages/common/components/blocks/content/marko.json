@@ -10,5 +10,8 @@
   },
   "<common-content-sponsors-block>": {
     "template": "./sponsors.marko"
+  },
+  "<common-content-sponsors-item-block>": {
+    "template": "./sponsors-item.marko"
   }
 }

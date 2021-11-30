@@ -1,10 +1,22 @@
-import { get } from "@parameter1/base-cms-object-path";
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import queryFragment from "@rogue-monkey-media/package-common/graphql/fragments/content-list";
 
-$ const { config } = out.global;
+$ const { sectionName, date, newsletter } = input;
 
-$ const { newsletter, date } = input;
+$ const withImage = defaultValue(input.withImage, false);
+$ const imagePosition = defaultValue(input.imagePosition, 'right');
+$ const withSection = defaultValue(input.withSection, true);
+$ const urlParams = defaultValue(input.urlParams, false);
 
-$ const newsletterConfig = config.get(newsletter.alias);
+$ const queryParams = {
+  date: date.valueOf(),
+  newsletterId: newsletter.id,
+  sectionName,
+  limit: input.limit || 3,
+  skip: input.skip || 0,
+  queryFragment,
+};
 
 $ const sectionNameStyle = {
   "font-size": "25px",
@@ -13,43 +25,26 @@ $ const sectionNameStyle = {
   "color": "#3856a6",
 };
 
-<table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
-  <tr>
-    <td align="center" valign="middle" class="font1" style=sectionNameStyle>
-      SPONSORS
-    </td>
-  </tr>
-  <common-table-spacer-element class="height2" height=20 />
-  <tr>
-    <td>
-      <table style="padding-bottom: 5px;" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td align="left" style="padding-right: 10px">
-            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
-              <img class="content-image" title="Economic Outlook Mailing - US Leading Indicator" src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/red.png" alt="Economic Outlook Mailing - US Leading Indicator" width="290" height="125" />
-            </a>
-          </td>
-          <td align="right" style="padding-left: 10px">
-            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
-              <img class="content-image" title="Economic Outlook Mailing - Public New Construction" src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/teal.png" alt="Economic Outlook Mailing - Public New Construction" width="290" height="125" />
-            </a>
-          </td>
-        </tr>
-      </table>
-      <table style="padding-top: 5px; padding-bottom: 10px;" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-          <td align="left" style="padding-right: 10px">
-            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
-              <img class="content-image" title="Economic Outlook Mailing - European Composite Leading Indicator" src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/yellow.png" alt="Economic Outlook Mailing - European Composite Leading Indicator" width="290" />
-            </a>
-          </td>
-          <td align="right" style="padding-left: 10px">
-            <a href="http://www.oemoffhighway.com/market-analysis/economic-outlook" target="_blank" rel="noopener noreferrer">
-              <img class="content-image" title="Economic Outlook Mailing - Mining, Oil &amp; Gas Field Machinery etc." src="https://img.oemoffhighway.com/files/base/acbm/ooh/image/static/econNewsletter/blue.png" alt="Economic Outlook Mailing - Mining, Oil &amp; Gas Field Machinery etc." width="290" />
-            </a>
-          </td>
-        </tr>
-      </table>
-    </td>
-  </tr>
-</table>
+<if(withSection===true)>
+  <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
+    <common-table-spacer-element height="25" />
+    <tr>
+      <td align="center" valign="middle" class="font1" style=sectionNameStyle>
+        SPONSORS
+      </td>
+    </tr>
+    <common-table-spacer-element height="15" />
+  </table>
+</if>
+<marko-web-query|{ nodes }| name="newsletter-scheduled-content" collapsible=false params=queryParams>
+  <if(nodes.length)>
+    <for|content| of=nodes>
+      <common-content-sponsors-item-block
+        content=content
+        with-section=withSection
+        with-image=withImage
+        url-params=urlParams
+      />
+    </for>
+  </if>
+</marko-web-query>
