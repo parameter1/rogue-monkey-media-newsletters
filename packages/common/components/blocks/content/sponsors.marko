@@ -25,26 +25,43 @@ $ const sectionNameStyle = {
   "color": "#3856a6",
 };
 
-<if(withSection===true)>
-  <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
-    <common-table-spacer-element height="25" />
-    <tr>
-      <td align="center" valign="middle" class="font1" style=sectionNameStyle>
-        SPONSORS
-      </td>
-    </tr>
-    <common-table-spacer-element height="15" />
-  </table>
-</if>
 <marko-web-query|{ nodes }| name="newsletter-scheduled-content" collapsible=false params=queryParams>
-  <if(nodes.length)>
-    <for|content| of=nodes>
-      <common-content-sponsors-item-block
-        content=content
-        with-section=withSection
-        with-image=withImage
-        url-params=urlParams
-      />
-    </for>
+  $ const perRow = 4;
+  $ const chunks = nodes.reduce((arr, item, index) => {
+    const chunkIndex = Math.floor(index/perRow);
+
+    if (!arr[chunkIndex]) {
+      arr[chunkIndex] = [];
+    }
+    arr[chunkIndex].push(item);
+    return arr;
+  }, []);
+
+  <if(withSection===true)>
+    <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
+      <common-table-spacer-element height="25" />
+      <tr>
+        <td align="center" valign="middle" class="font1" style=sectionNameStyle>
+          SPONSORS
+        </td>
+      </tr>
+      <common-table-spacer-element height="15" />
+    </table>
   </if>
+  <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
+    <for|chunk| of =chunks>
+      <tr>
+        <for|content| of=chunk>
+          <td>
+            <common-content-sponsors-item-block
+              content=content
+              with-section=withSection
+              with-image=withImage
+              url-params=urlParams
+            />
+          </td>
+        </for>
+      </tr>
+    </for>
+  </table>
 </marko-web-query>
