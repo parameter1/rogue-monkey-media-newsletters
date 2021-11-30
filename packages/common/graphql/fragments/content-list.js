@@ -41,6 +41,9 @@ fragment NewsletterContentListFragment on Content {
     linkText
     linkUrl
   }
+  ... on ContentCompany {
+    website
+  }
   ...on ContentNews {
     byline
   }
