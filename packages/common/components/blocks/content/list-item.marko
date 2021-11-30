@@ -30,13 +30,8 @@ $ const imgLinkStyles = {
 $ const tagStyle = {
   "font-size": "14px",
   "line-height": "19px",
-  "color": "#257478",
+  "color": "#3856a6",
   "text-transform": "uppercase",
-}
-
-$ const sponsoredTagStyle = {
-  ...tagStyle,
-  "color": "#a91b20",
 }
 
 <tr>
@@ -47,7 +42,7 @@ $ const sponsoredTagStyle = {
       $ const tag = (content.company) ? `Sponsored Content by ${get(content, "company.name")}` : "Sponsored Content";
       <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
         <tr>
-          <td align="left" valign="top" style=sponsoredTagStyle>${tag}</td>
+          <td align="left" valign="top" style=tagStyle>${tag}</td>
         </tr>
       </table>
     </if>
