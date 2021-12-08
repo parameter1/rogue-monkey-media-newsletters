@@ -7,5 +7,11 @@
   },
   "<common-content-list-item-block>": {
     "template": "./list-item.marko"
+  },
+  "<common-content-sponsors-block>": {
+    "template": "./sponsors.marko"
+  },
+  "<common-content-sponsors-item-block>": {
+    "template": "./sponsors-item.marko"
   }
 }

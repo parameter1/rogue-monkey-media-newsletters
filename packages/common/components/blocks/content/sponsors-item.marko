@@ -1,0 +1,34 @@
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import { URLSearchParams } from "url";
+
+$ const { content, urlParams } = input;
+
+$ const withImage = defaultValue(input.withImage, false);
+$ const withSection = defaultValue(input.withSection, true);
+
+$ const queryString = (urlParams && content.type == 'company') ? `?${new URLSearchParams(urlParams)}` : "";
+$ const contentUrl = `${content.siteContext.url}${queryString}`
+
+$ const imgLinkStyles = {
+  "border": 0,
+  "outline": "none",
+  "text-decoration": "none",
+};
+
+<table role="presentation" width="100%" border="0" align="center"  cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+      <marko-core-obj-value|{ value: image }| obj=content field="primaryImage" as="object">
+        <marko-newsletter-imgix
+          src=image.src
+          alt=image.alt
+          options={ w: 120, h: 50, fit: 'fill', fill: 'solid', 'fill-color': '#ffffff' }
+          class="img_resize1"
+        >
+          <@link href=content.website target="_blank" attrs={ style: imgLinkStyles } />
+        </marko-newsletter-imgix>
+      </marko-core-obj-value>
+    </td>
+  </tr>
+</table>

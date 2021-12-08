@@ -3,9 +3,11 @@ $ const { website, config } = out.global;
 $ const { newsletter } = input;
 
 $ const newsletterConfig = config.get(newsletter.alias);
-$ const tagline = get(newsletterConfig, "tagline");
 $ const subscribeLink = get(newsletterConfig, "subscribeLink");
+$ const advertiseLink = get(newsletterConfig, "advertiseLink");
+$ const editorialLink = get(newsletterConfig, "editorialLink");
 $ const publicationName = website.get("name");
+$ const background = get(newsletterConfig, "bgColor");
 
 $ const standardStyle = {
   "font-size": "17px",
@@ -34,12 +36,6 @@ $ const smallerUnderlineStyle = {
   "padding": "0",
 };
 
-$ const taglineStyle = {
-  ...smallerStyle,
-  "font-style": "italic",
-  "padding-top": "5px",
-}
-
 $ const stealthLinkStyle = {
   "color": "#ffffff",
   "display": "none",
@@ -55,7 +51,7 @@ $ const stealthLinkStyle = {
 
 <tr>
   <td align="center" valign="top">
-    <table role="presentation" width="100%" border="0" bgcolor="#2f3031" align="center"  cellpadding="0" cellspacing="0">
+    <table role="presentation" width="100%" border="0" bgcolor=background align="center"  cellpadding="0" cellspacing="0">
       <tr>
         <td align="center" valign="top">
           <table role="presentation" width="610" border="0" align="center"  cellpadding="0" cellspacing="0" class="wrap003">
@@ -66,11 +62,6 @@ $ const stealthLinkStyle = {
                     <common-logo-element newsletter=newsletter alt=publicationName />
                   </td>
                 </tr>
-                <if(tagline)>
-                  <tr>
-                    <td align="center" valign="top" style=taglineStyle>${tagline}</td>
-                  </tr>
-                </if>
                 <common-table-spacer-element height="20" />
 
                 $ const socialMedia = get(newsletterConfig, "socialMedia");
@@ -99,7 +90,7 @@ $ const stealthLinkStyle = {
                       </table>
                     </td>
                   </tr>
-                  <common-table-spacer-element height="16" />
+                  <common-table-spacer-element height="21" />
                 </if>
 
                 <tr>
@@ -117,27 +108,23 @@ $ const stealthLinkStyle = {
                 </tr>
                 <common-table-spacer-element height="21" />
 
-                $ const contactLinks = getAsArray(newsletterConfig, "contactLinks");
-                <if(contactLinks.length)>
-                  <tr>
-                    <td align="left" valign="top" style=standardStyle>
-                      Contact
-                    </td>
-                  </tr>
-                  <tr>
-                    <td align="left" valign="top" style=standardStyle>
-                      <for|link, index| of=contactLinks>
-                        <a href=link.href style=standardUnderlineStyle>
-                          ${link.label}
-                        </a>
-                        <if(index < (contactLinks.length - 1))>
-                          <span style="padding: 0 10px;">|</span>
-                        </if>
-                      </for>
-                    </td>
-                  </tr>
-                  <common-table-spacer-element height="21" />
-                </if>
+                <tr>
+                  <td align="left" valign="top" style=standardStyle>
+                    Contact
+                  </td>
+                </tr>
+                <tr>
+                  <td align="left" valign="top" style=standardStyle>
+                    <a href=advertiseLink style=standardUnderlineStyle>
+                      Advertising
+                    </a>
+                    |
+                    <a href=editorialLink style=standardUnderlineStyle>
+                      Editorial
+                    </a>
+                  </td>
+                </tr>
+                <common-table-spacer-element height="21" />
 
                 <tr>
                   <td align="left" valign="top" style=smallerStyle>
@@ -155,14 +142,12 @@ $ const stealthLinkStyle = {
                 <common-table-spacer-element height="19" />
                 <tr>
                   <td align="left" valign="top" style=smallerStyle>
-                    &copy; ${(new Date()).getFullYear()} All rights reserved. | COMPANY ADDRESS
+                    &copy; ${(new Date()).getFullYear()} All rights reserved. | 2915 South 13th Street Duncan, OK 73533
                   </td>
                 </tr>
                 <common-table-spacer-element height="22" />
             </tbody>
           </table>
-      <--!ADD HREF LINK -->
-          <div style=stealthLinkStyle><a href="#">About Rogue Monkey Media.</a></div>
         </td>
       </tr>
     </table>

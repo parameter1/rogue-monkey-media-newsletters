@@ -1,0 +1,67 @@
+import { get, getAsArray } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+import queryFragment from "@rogue-monkey-media/package-common/graphql/fragments/content-list";
+
+$ const { sectionName, date, newsletter } = input;
+
+$ const withImage = defaultValue(input.withImage, false);
+$ const imagePosition = defaultValue(input.imagePosition, 'right');
+$ const withSection = defaultValue(input.withSection, true);
+$ const urlParams = defaultValue(input.urlParams, false);
+
+$ const queryParams = {
+  date: date.valueOf(),
+  newsletterId: newsletter.id,
+  sectionName,
+  limit: input.limit,
+  skip: input.skip,
+  queryFragment,
+};
+
+$ const sectionNameStyle = {
+  "font-size": "25px",
+  "line-height": "23px",
+  "font-weight": "900",
+  "color": "#3856a6",
+};
+
+<marko-web-query|{ nodes }| name="newsletter-scheduled-content" collapsible=true params=queryParams>
+  $ const perRow = 4;
+  $ const chunks = nodes.reduce((arr, item, index) => {
+    const chunkIndex = Math.floor(index/perRow);
+
+    if (!arr[chunkIndex]) {
+      arr[chunkIndex] = [];
+    }
+    arr[chunkIndex].push(item);
+    return arr;
+  }, []);
+
+  <if(withSection)>
+    <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
+      <common-table-spacer-element height="25" />
+      <tr>
+        <td align="center" valign="middle" class="font1" style=sectionNameStyle>
+          SPONSORS
+        </td>
+      </tr>
+      <common-table-spacer-element height="15" />
+    </table>
+  </if>
+  <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
+    <for|chunk| of =chunks>
+      <tr>
+        <for|content| of=chunk>
+          <td>
+            <common-content-sponsors-item-block
+              content=content
+              with-section=withSection
+              with-image=withImage
+              url-params=urlParams
+            />
+          </td>
+        </for>
+      </tr>
+    </for>
+  </table>
+</marko-web-query>

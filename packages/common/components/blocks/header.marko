@@ -1,26 +1,54 @@
-$ const { config } = out.global
+import { get } from "@parameter1/base-cms-object-path";
+import defaultValue from "@parameter1/base-cms-marko-core/utils/default-value";
+
+$ const { website, config } = out.global
 
 $ const { newsletter, date } = input;
 
 $ const newsletterConfig = config.get(newsletter.alias);
 $ const name = (newsletterConfig.name || newsletter.name);
 
+$ const background = get(newsletterConfig, "bgColor");
+
+$ const headerSrc = newsletterConfig.headerSrc;
+
+$ const alt = defaultValue(input.alt, newsletter.name);
+
+$ const headerStyles = {
+  "border": "0",
+  "font-size": "0",
+  "line-height": "0",
+}
+
+$ const linkStyles = {
+  "display": "block",
+  "font-size": "0",
+  "line-height": "0",
+}
+
 <tr>
-  <td align="center" valign="top" bgcolor="#2f3031">
+  <td align="center" valign="top">
     <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0">
       <common-table-spacer-element height="12" />
       <tr>
         <td align="center" valign="top">
-          <table role="presentation" width="610" border="0" cellspacing="0" cellpadding="0" class="wrap003">
+          <table role="presentation" width="600" border="0" cellspacing="0" cellpadding="0" class="wrap003">
             <tr>
-              <td align="left" valign="top" width="15"></td>
-              <td align="left" valign="top" width="130" style="padding-top: 5px">
-                <common-logo-element newsletter=newsletter />
+              <!-- <td align="left" valign="top" width="15"></td> -->
+              <td align="center" valign="top" style="padding-top: 5px">
+                <marko-newsletter-imgix
+                  src=headerSrc
+                  options={ w: 600 }
+                  alt=alt
+                  attrs={ border: "0", style: headerStyles }
+                  >
+                  <@link href=website.get("origin") attrs={ style: linkStyles } target="_blank" />
+                </marko-newsletter-imgix>
               </td>
-              <td align="left" valign="top" width="24"></td>
-              <td align="left" valign="middle" style="font-size: 26px;line-height: 40px;color: #ffffff;font-weight: 700;" class="font1">
+              <!-- <td align="left" valign="top" width="24"></td>
+              <td align="left" valign="middle" style="font-size: 26px; color: #000000; line-height: 40px;font-weight: 700;" class="font1">
                 ${name}
-              </td>
+              </td> -->
             </tr>
           </table>
         </td>
