@@ -3,9 +3,8 @@ $ const { website, config } = out.global;
 $ const { newsletter } = input;
 
 $ const newsletterConfig = config.get(newsletter.alias);
-$ const subscribeLink = get(newsletterConfig, "subscribeLink");
 $ const advertiseLink = get(newsletterConfig, "advertiseLink");
-$ const editorialLink = get(newsletterConfig, "editorialLink");
+$ const contactUsLink = get(newsletterConfig, "contactUsLink");
 $ const publicationName = website.get("name");
 $ const background = get(newsletterConfig, "bgColor");
 
@@ -101,7 +100,7 @@ $ const stealthLinkStyle = {
                 <tr>
                   <td align="left" valign="top" style=standardStyle>
                     Did someone forward you this email?
-                    <a href=subscribeLink style=standardUnderlineStyle>
+                    <a href="*|LIST:SUBSCRIBE|*" style=standardUnderlineStyle>
                       Sign up here
                     </a>
                   </td>
@@ -119,8 +118,8 @@ $ const stealthLinkStyle = {
                       Advertising
                     </a>
                     |
-                    <a href=editorialLink style=standardUnderlineStyle>
-                      Editorial
+                    <a href=contactUsLink style=standardUnderlineStyle>
+                      Contact Us
                     </a>
                   </td>
                 </tr>
@@ -134,7 +133,7 @@ $ const stealthLinkStyle = {
                 <common-table-spacer-element height="19" />
                 <tr>
                   <td align="left" valign="top" style=smallerStyle>
-                    <a href="@{confirmunsubscribelink}@" style=smallerUnderlineStyle>
+                    <a href="*|UNSUB|*" style=smallerUnderlineStyle>
                       Unsubscribe here
                     </a>
                   </td>
