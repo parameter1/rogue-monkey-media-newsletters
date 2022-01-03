@@ -41,27 +41,33 @@ $ const sectionNameStyle = {
     <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
       <common-table-spacer-element height="25" />
       <tr>
-        <td align="center" valign="middle" class="font1" style=sectionNameStyle>
-          SPONSORS
+        <td align="center" valign="top">
+          <table width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td align="center" valign="middle" class="font1" style=sectionNameStyle>
+                SPONSORS
+              </td>
+            </tr>
+          </table>
+          <common-table-spacer-element height="15" />
+          <table role="presentation" width="600" border="0" align="center" cellpadding="0" cellspacing="0">
+            <for|chunk| of =chunks>
+              <tr>
+                <for|content| of=chunk>
+                  <td align="center">
+                    <common-content-sponsors-item-block
+                      content=content
+                      with-section=withSection
+                      with-image=withImage
+                      url-params=urlParams
+                    />
+                  </td>
+                </for>
+              </tr>
+            </for>
+          </table>
         </td>
       </tr>
-      <common-table-spacer-element height="15" />
     </table>
   </if>
-  <table role="presentation" width="610" border="0" align="center" cellpadding="0" cellspacing="0" class="wrap003">
-    <for|chunk| of =chunks>
-      <tr>
-        <for|content| of=chunk>
-          <td>
-            <common-content-sponsors-item-block
-              content=content
-              with-section=withSection
-              with-image=withImage
-              url-params=urlParams
-            />
-          </td>
-        </for>
-      </tr>
-    </for>
-  </table>
 </marko-web-query>
