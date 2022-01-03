@@ -23,11 +23,12 @@ $ const classNames = [`email-x-${alias}-${name}`, input.class];
       width: ad.width,
       height: ad.height,
     };
-    <common-table-hr-element />
+
     <tr>
       <td align="center" valign="top">
-        <table role="presentation" width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+        <table role="presentation" width="620" border="0" align="center" cellpadding="0" cellspacing="0">
           <tbody>
+            <common-table-hr-element />
             <tr>
               <td align="left" valign="middle" style="font-size:15px;line-height:20px; color:#666666;font-weight:400;text-align: center;">Advertisement</td>
             </tr>
@@ -67,11 +68,12 @@ $ const classNames = [`email-x-${alias}-${name}`, input.class];
                 </if>
               </td>
             </tr>
+            <common-table-hr-element height="15" />
           </tbody>
         </table>
       </td>
     </tr>
-    <common-table-hr-element height="15" />
+
   </if>
   <else>
     <${input.whenEmpty} />
