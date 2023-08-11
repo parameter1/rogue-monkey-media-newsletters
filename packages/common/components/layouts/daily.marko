@@ -64,7 +64,7 @@ $ const nativeX = config.getAsObject("nativeX");
           date=date
           newsletter=newsletter
           promotion-component="advertisement-block"
-          placement-id=get(nativeX, `placements.${newsletter.alias}.native-slot-1`)
+          placement-id=nativeX.getPlacement({ name: 'native-slot-1', aliases: [newsletter.alias] }).id
         />
 
         <!-- Featured Story block -->
@@ -101,7 +101,7 @@ $ const nativeX = config.getAsObject("nativeX");
           date=date
           newsletter=newsletter
           promotion-component="advertisement-block"
-          placement-id=get(nativeX, `placements.${newsletter.alias}.native-slot-2`)
+          placement-id=nativeX.getPlacement({ name: 'native-slot-2', aliases: [newsletter.alias] }).id
         />
 
         <!-- Content sponsors block -->
