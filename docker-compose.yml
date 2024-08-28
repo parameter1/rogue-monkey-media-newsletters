@@ -49,8 +49,7 @@ services:
     <<: *newsletter-cmd
     working_dir: /root/tenants/all
     environment:
-      <<: *env
-      <<: *env-virgon
+      <<: [ *env, *env-virgon ]
       PORT: 80
       EXPOSED_PORT: 22290
       LIVERELOAD_PORT: 32290
