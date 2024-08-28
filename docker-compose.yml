@@ -22,12 +22,13 @@ x-env-defaults: &env
   NODE_ENV: development
   NEW_RELIC_ENABLED: ${NEW_RELIC_ENABLED-0}
   NEW_RELIC_LICENSE_KEY: ${NEW_RELIC_LICENSE_KEY-(unset)}
-  EMAILX_SERVE_URI: ${EMAILX_SERVE_URI-https://roguemonkeymedia.serve.email-x.parameter1.com}
 
 x-env-leonis: &env-leonis
+  <<: *env
   GRAPHQL_URI: ${GRAPHQL_URI-https://leonis.graphql.base.parameter1.com}
 
 x-env-virgon: &env-virgon
+  <<: *env
   GRAPHQL_URI: ${GRAPHQL_URI-https://virgon.graphql.base.parameter1.com}
 
 services:
@@ -49,7 +50,6 @@ services:
     <<: *newsletter-cmd
     working_dir: /root/tenants/all
     environment:
-      <<: *env
       <<: *env-virgon
       PORT: 80
       EXPOSED_PORT: 22290
