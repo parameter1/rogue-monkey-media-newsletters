@@ -1,6 +1,6 @@
 const EmailXConfiguration = require('@parameter1/base-cms-marko-newsletters-email-x/config');
 
-const config = new EmailXConfiguration('https://delivery.mindfulcms.com/roguemonkeymedia/default/compat/email-banner');
+const config = new EmailXConfiguration('https://delivery.mindfulcms.com/rmm/default/compat/email-banner');
 
 config
   .setAdUnits('rural-water-wire', [
